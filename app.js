@@ -43,15 +43,16 @@ function startgame(){
 }
 function gonext(){
     resetquizbox();
-    shownext(shuffledque[currentque+1]);
     currentque++;
+    shownext(shuffledque[currentque+1]);    
     
 };
+
 function goback(){
-    if(currentque>1){
+    if(currentque>0){
         resetquizbox();
         //console.log(shuffledque[currentque-1]);
-        shownext(shuffledque[currentque-1]);
+        shownext(shuffledque[currentque]);
         currentque--;
     }
 };
