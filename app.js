@@ -5,7 +5,7 @@ const next= document.getElementById('next');
 next.addEventListener('click', gonext);
 
 const back= document.getElementById('back');
-next.addEventListener('click', goback);
+back.addEventListener('click', goback);
 
 const queCont=document.getElementById('quizbox');
 const queEle= document.getElementById('que');
@@ -42,19 +42,23 @@ function startgame(){
     
 }
 function gonext(){
+    resetquizbox();
+    shownext(shuffledque[currentque+1]);
     currentque++;
-    setnext();
+    
 };
 function goback(){
     if(currentque>1){
         resetquizbox();
-        shownext(shuffledque[currentque-1]); 
+        //console.log(shuffledque[currentque-1]);
+        shownext(shuffledque[currentque-1]);
+        currentque--;
     }
 };
 
 function setnext(){
     resetquizbox();
-    shownext(shuffledque[currentque]);
+    shownext(shuffledque[currentque +1]);
 }
 
 function shownext(que){
