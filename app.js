@@ -9,6 +9,7 @@ back.addEventListener('click', goback);
 
 const queCont=document.getElementById('quizbox');
 const queEle= document.getElementById('que');
+
 const ansEle= document.getElementById('options');
 
 var currentque , shuffledque, correctcounter;
@@ -43,26 +44,28 @@ function startgame(){
 }
 function gonext(){
     resetquizbox();
+    shownext(shuffledque[currentque+1]);
     currentque++;
-    shownext(shuffledque[currentque+1]);    
     
 };
-
 function goback(){
-    if(currentque>0){
-        resetquizbox();
-        //console.log(shuffledque[currentque-1]);
-        shownext(shuffledque[currentque]);
+    resetquizbox();
+    if(currentque>0){ 
+        console.log(shuffledque[currentque-1]);
+        shownext(shuffledque[currentque-1]);
         currentque--;
     }
 };
 
 function setnext(){
     resetquizbox();
-    shownext(shuffledque[currentque +1]);
+    shownext(shuffledque[currentque+1]);
 }
 
 function shownext(que){
+    if(currentque > 0){
+        back.style.display='block';
+    }
     document.getElementsByClassName('no').innerHTML='Question ' + currentque + '  of 15';
     queEle.innerText=que.que;
     que.ans.forEach( ans =>{
