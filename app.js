@@ -11,7 +11,8 @@ const queCont=document.getElementById('quizbox');
 const queEle= document.getElementById('que');
 
 const ansEle= document.getElementById('options');
-
+  
+var arr=[]
 var currentque , shuffledque, correctcounter;
 
 function startgame(){
@@ -66,7 +67,7 @@ function shownext(que){
     if(currentque > 0){
         back.style.display='block';
     }
-    document.getElementsByClassName('no').innerHTML='Question ' + currentque + '  of 15';
+    document.getElementsByClassName('no')[0].innerHTML='Question ' + (currentque +1) + '  of 10';
     queEle.innerText=que.que;
     que.ans.forEach( ans =>{
         const button =document.createElement('button');
@@ -80,17 +81,29 @@ function shownext(que){
     });
 };
 
-function resetquizbox() {
-    while (ansEle.firstChild){
-        ansEle.removeChild(ansEle.firstChild);
+function setstatus(element, iscorrect) {
+    clearstatus(element)
+    if(iscorrect){
+        if(arr.includes(currentque)){
+            correctcounter++;
+            element.classList.add('correct')
+        }
+    }else{
+        element.classList.add('wrong');
     }
 };
 
+function clearstatus(element){
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
+};
+
+
 function selectnext(e){
+    arr.push(currentque);
     const selectcorrectans = e.target;
     const iscorrect = selectcorrectans.dataset.iscorrect;
 
-    setstatus(document.body ,iscorrect);
     Array.from(ansEle.children).forEach(button =>{
         setstatus(button, button.dataset.iscorrect)
     });
@@ -109,26 +122,17 @@ function selectnext(e){
             document.getElementById('info').style.display='none';
             document.getElementById('results').innerHTML='';
             queCont.style.display='none';
-            document.getElementById('marks').innerHTML=Math.floor(correctcounter/2);
+            document.getElementById('marks').innerHTML=correctcounter;
             document.getElementById('again').addEventListener('click',()=>{
                 location.reload();
             })
         })    
     }
-}
-
-function setstatus(element, iscorrect) {
-    clearstatus(element)
-    if(iscorrect){
-        correctcounter++;
-        element.classList.add('correct');
-    }else{
-        element.classList.add('wrong');
+};
+function resetquizbox() {
+    while (ansEle.firstChild){
+        ansEle.removeChild(ansEle.firstChild);
     }
 };
 
-function clearstatus(element){
-    element.classList.remove('correct');
-    element.classList.remove('wrong');
-};
 
