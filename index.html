@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>COVID19_test</title>
+</head>
+<body id='body' style='background-image: url(bg1.jpg); background-size: cover; background-repeat: no-repeat;'>
+    <div id='instructions'>
+        <h1>Test your knowledge on COVID19!</h1>
+        <h3>Instructions</h3>
+        <p>There are 10 questions.
+            <br>
+         You will get 15 seconds to answer each one.</p>
+        <h4>Are you ready for the test?</h4>
+        <br>
+        <button type="button" id='go'>GO!</button>
+</div>
+<div id='timer' style='display: none'>
+    <div id='timer'>timer</div>
+</div>
+
+    <div id='quizbox' style='display: none'>
+        <div class='no'>Question 1 of 10</div>
+        <br>
+        <div id='que'>Question</div>
+        <br>
+        <br>
+        <div id='options'></div>
+            <img src="goto.jpg" style=" margin:40px; margin-right: 80px; float: right;
+            cursor: pointer;
+            " width="75" height="75" alt="" loading="lazy" id='next'>
+                   <img src="goback.jpg" style=" margin:40px; margin-left: 80px; float: left;
+                   cursor: pointer;
+                   " width="75" height="75" alt="" loading="lazy" id='back'>    
+    </div>
+        <br>
+
+    <p id='info' style='display: none'>Your test is over. Well Done!</p>
+
+    <p id='results' style='display: none'> click to view Results!</p>
+
+    <div id='score' style='display: none' >
+        <p id='infos'>Here's your score</p>
+        <p id='marks'></p>
+       <br>
+        <button id='again'>Try again!</button>
+        
+    </div>
+    
+</body>
+<script src="script.js"></script>
+<script src="app.js"></script>
+</html>
