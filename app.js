@@ -5,12 +5,13 @@ const next= document.getElementById('next');
 next.addEventListener('click', gonext);
 
 const back= document.getElementById('back');
-next.addEventListener('click', goback);
+back.addEventListener('click', goback);
 
 const queCont=document.getElementById('quizbox');
 const queEle= document.getElementById('que');
 const ansEle= document.getElementById('options');
 
+var arr=[]
 var currentque , shuffledque, correctcounter;
 
 function startgame(){
@@ -43,13 +44,17 @@ function startgame(){
 }
 function gonext(){
     currentque++;
-    setnext();
+    resetquizbox();
+    shownext(shuffledque[currentque]);
+    
 };
+
 function goback(){
-    if(currentque>1){
-        resetquizbox();
-        shownext(shuffledque[currentque-1]); 
-    }
+    resetquizbox();
+    currentque--;
+    if(currentque>=0){
+        shownext(shuffledque[currentque]);
+    }  
 };
 
 function setnext(){
@@ -58,7 +63,10 @@ function setnext(){
 }
 
 function shownext(que){
-    document.getElementsByClassName('no').innerHTML='Question ' + currentque + '  of 15';
+    if(currentque > 0){
+        back.style.display='block';
+    }
+    document.getElementsByClassName('no')[0].innerHTML='Question ' + (currentque +1) + '  of 10';
     queEle.innerText=que.que;
     que.ans.forEach( ans =>{
         const button =document.createElement('button');
@@ -72,17 +80,29 @@ function shownext(que){
     });
 };
 
-function resetquizbox() {
-    while (ansEle.firstChild){
-        ansEle.removeChild(ansEle.firstChild);
+function setstatus(element, iscorrect) {
+    clearstatus(element)
+    if(iscorrect){
+        if(arr.includes(currentque)){
+            correctcounter++;
+            element.classList.add('correct')
+        }
+    }else{
+        element.classList.add('wrong');
     }
 };
 
+function clearstatus(element){
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
+};
+
+
 function selectnext(e){
+    arr.push(currentque);
     const selectcorrectans = e.target;
     const iscorrect = selectcorrectans.dataset.iscorrect;
 
-    setstatus(document.body ,iscorrect);
     Array.from(ansEle.children).forEach(button =>{
         setstatus(button, button.dataset.iscorrect)
     });
@@ -95,32 +115,28 @@ function selectnext(e){
         document.getElementById('results').style.display='block';
         document.getElementById('info').style.display='block';
         document.getElementById('results').addEventListener('click',()=>{
+           show();
             clearstatus(document.body);
             document.body.style.background='url(bg2.jpg)';
             document.getElementById('score').style.display='block';
             document.getElementById('info').style.display='none';
             document.getElementById('results').innerHTML='';
             queCont.style.display='none';
-            document.getElementById('marks').innerHTML=Math.floor(correctcounter/2);
+            document.getElementById('marks').innerHTML=correctcounter;
             document.getElementById('again').addEventListener('click',()=>{
                 location.reload();
             })
         })    
     }
+};
+function show(){
+    var name= document.getElementById('name').value;
+    document.getElementById('infos').innerHTML= name + ", Here's your score!"
 }
-
-function setstatus(element, iscorrect) {
-    clearstatus(element)
-    if(iscorrect){
-        correctcounter++;
-        element.classList.add('correct');
-    }else{
-        element.classList.add('wrong');
+function resetquizbox() {
+    while (ansEle.firstChild){
+        ansEle.removeChild(ansEle.firstChild);
     }
 };
 
-function clearstatus(element){
-    element.classList.remove('correct');
-    element.classList.remove('wrong');
-};
 
