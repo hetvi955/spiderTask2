@@ -17,7 +17,7 @@
         <br>
         <form action="">
             <label for="name" style="font-size:20px; font-family:'Segoe UI';color:blanchedalmond">What's your name?
-            <input type="text" id='name' style="font-size:20px; font-family:'Segoe UI';color:rgb(68, 67, 64)">
+            <input type="text" id='name' style="font-size:20px; font-family:'Segoe UI';color:rgb(68, 67, 64);padding:3px;">
         </label>
         <button type="button" onclick='show()' style="font-size:16px; font-family:'Segoe UI';color:rgb(68, 67, 64); padding:5px">submit</button> 
         </form>
@@ -25,8 +25,10 @@
         <br>
         <button type="button" id='go'>GO!</button>
 </div>
-<div id='timer' style='display: none'>
-    <div id='timer'>timer</div>
+<p id='tinfo' style='display: none'>Time remaining:</p>
+<div id='timer' style='display: none'>150</div>
+
+<div id="questionsnav" class="none">
 </div>
 
     <div id='quizbox' style='display: none'>
@@ -39,8 +41,8 @@
             <img src="goto.jpg" style=" margin:40px; margin-right: 80px; float: right;
             cursor: pointer;
             " width="75" height="75" alt="" loading="lazy" id='next'>
-                   <img src="goback.jpg" style=" margin:40px; margin-left: 80px; float: left;
-                   cursor: pointer; display: none;" width="75" height="75" alt="" loading="lazy" id='back'>    
+            <img src="goback.jpg" style=" margin:40px; margin-left: 80px; float: left;
+            cursor: pointer; display: none;" width="75" height="75" alt="" loading="lazy" id='back'>    
     </div>
         <br>
 
@@ -52,6 +54,8 @@
         <p id='infos'>Here's your score</p>
         <p id='marks'></p>
        <br>
+       <p id='highscores'>Scores obtained till now</p>
+       <p id='highscore'></p>
         <button id='again'>Try again!</button>
         
     </div>
