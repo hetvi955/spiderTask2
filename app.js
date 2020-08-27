@@ -11,8 +11,7 @@ const queCont=document.getElementById('quizbox');
 const queEle= document.getElementById('que');
 
 const ansEle= document.getElementById('options');
-  
-var arr=[]
+
 var currentque , shuffledque, correctcounter;
 
 function startgame(){
@@ -44,23 +43,22 @@ function startgame(){
     
 }
 function gonext(){
-    resetquizbox();
-    shownext(shuffledque[currentque+1]);
     currentque++;
+    resetquizbox();
+    shownext(shuffledque[currentque])
     
 };
 function goback(){
     resetquizbox();
-    if(currentque>0){ 
-        console.log(shuffledque[currentque-1]);
-        shownext(shuffledque[currentque-1]);
-        currentque--;
-    }
+    currentque--;
+    if(currentque>=0){
+        shownext(shuffledque[currentque]);
+    }  
 };
 
 function setnext(){
     resetquizbox();
-    shownext(shuffledque[currentque+1]);
+    shownext(shuffledque[currentque]);
 }
 
 function shownext(que){
@@ -84,10 +82,10 @@ function shownext(que){
 function setstatus(element, iscorrect) {
     clearstatus(element)
     if(iscorrect){
-        if(arr.includes(currentque)){
+        
             correctcounter++;
             element.classList.add('correct')
-        }
+        
     }else{
         element.classList.add('wrong');
     }
@@ -100,7 +98,6 @@ function clearstatus(element){
 
 
 function selectnext(e){
-    arr.push(currentque);
     const selectcorrectans = e.target;
     const iscorrect = selectcorrectans.dataset.iscorrect;
 
