@@ -1,3 +1,4 @@
+
 *{
     padding:0;
     margin:0;
@@ -168,5 +169,18 @@
     border-radius:5px;
     color:rgb(102, 101, 101);  
 }
-
+#end{
+    cursor: pointer;
+    margin-top:70px;
+    margin-left:120px;
+    padding:5px;
+    background-color: rgb(114, 114, 114);
+    color:white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:18px;
+    border-radius: 8%;
+}
+#end:hover{
+    border:white solid;
+}
 
