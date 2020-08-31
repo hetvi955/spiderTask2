@@ -6,6 +6,8 @@ next.addEventListener('click', gonext);
 
 const back= document.getElementById('back');
 back.addEventListener('click', goback);
+const end= document.getElementById('end');
+end.addEventListener('click', endgame);
 
 const queCont=document.getElementById('quizbox');
 const queEle= document.getElementById('que');
@@ -19,6 +21,7 @@ function startgame(){
     document.getElementById('timer').style.display='block';
     document.body.style.background='black';
     //console.log('quiz startd')
+    end.style.display='block';
     document.getElementById('instructions').style.display='none';
     queCont.style.display='block';
     currentque = 0;
@@ -101,6 +104,30 @@ function starttimer(){
 
 update = setInterval('starttimer()', 1000);
 
+function endgame(){
+    end.style.display='none';
+    back.style.display='none';
+    next.style.display='none';
+    document.getElementById('tinfo').style.display='none';
+    document.getElementById('questionsnav').style.display='none';
+    document.getElementById('timer').style.display='none';
+    document.getElementById('results').style.display='block';
+    document.getElementById('info').style.display='block';
+    document.getElementById('results').addEventListener('click',()=>{
+        clearstatus(document.body);
+        document.body.style.background='url(bg2.jpg)';
+        document.getElementById('score').style.display='block';
+        document.getElementById('info').style.display='none';
+        document.getElementById('results').innerHTML='';
+        queCont.style.display='none';
+        document.getElementById('marks').innerHTML=correctcounter;
+        document.getElementById('again').addEventListener('click',()=>{
+            location.reload();
+        })
+    })    
+
+};
+
 function gonext(){
     currentque++;
     resetquizbox();
@@ -174,32 +201,7 @@ function selectnext(e){
     Array.from(ansEle.children).forEach(button =>{
         setstatus(button, button.dataset.iscorrect)
     });
-    //stop at last que
-    if(shuffledque.length > currentque +1 ){
-        next.style.visibility='visible';
-    }else{
-        window.clearInterval(update);
-        back.style.display='none';
-        next.style.display='none';
-        document.getElementById('questionsnav').style.display='none';
-        document.getElementById('tinfo').style.display='none';
-        document.getElementById('timer').style.display='none';
-        document.getElementById('results').style.display='block';
-        document.getElementById('info').style.display='block';
-        document.getElementById('results').addEventListener('click',()=>{
-           show();
-            clearstatus(document.body);
-            document.body.style.background='url(bg2.jpg)';
-            document.getElementById('score').style.display='block';
-            document.getElementById('info').style.display='none';
-            document.getElementById('results').innerHTML='';
-            queCont.style.display='none';
-            document.getElementById('marks').innerHTML=correctcounter;
-            document.getElementById('again').addEventListener('click',()=>{
-                location.reload();
-            })
-        })    
-    }
+    
 };
 function show(){
     var name= document.getElementById('name').value;

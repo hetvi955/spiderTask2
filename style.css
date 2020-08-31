@@ -227,6 +227,21 @@
    column-gap: 10px;
    row-gap: 10px;
 }
+#end{
+    float: right;
+    cursor: pointer;
+    margin-top:90px;
+    margin-right:130px;
+    padding:5px;
+    background-color: rgb(114, 114, 114);
+    color:white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:18px;
+    border-radius: 8%;
+}
+#end:hover{
+    border:white solid;
+}
 
 
 
