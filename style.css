@@ -112,6 +112,9 @@
 .btn.wrong{
     background-color: red;
 }
+.navq.done{
+    background-color:grey;
+}
 
 #results{
     cursor: pointer;

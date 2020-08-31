@@ -154,7 +154,12 @@ function setstatus(element, iscorrect) {
     }else{
         element.classList.add('wrong');
     }
+    changenavcolor();
 };
+
+function changenavcolor(){
+    document.getElementsByClassName('navq')[currentque].style.background="grey";
+}
 
 function clearstatus(element){
     element.classList.remove('correct');
