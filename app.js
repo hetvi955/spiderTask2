@@ -7,6 +7,9 @@ next.addEventListener('click', gonext);
 const back= document.getElementById('back');
 back.addEventListener('click', goback);
 
+const end= document.getElementById('end');
+end.addEventListener('click', endgame);
+
 const queCont=document.getElementById('quizbox');
 const queEle= document.getElementById('que');
 
@@ -18,6 +21,7 @@ function startgame(){
     document.body.style.background='black';
     //console.log('quiz startd')
     document.getElementById('instructions').style.display='none';
+    document.getElementById('end').style.display='block';
     queCont.style.display='block';
     currentque = 0;
     correctcounter=0;
@@ -59,6 +63,26 @@ function goback(){
 function setnext(){
     resetquizbox();
     shownext(shuffledque[currentque]);
+}
+function endgame(){
+        end.style.display='none';
+        back.style.display='none';
+        next.style.display='none';
+        document.getElementById('results').style.display='block';
+        document.getElementById('info').style.display='block';
+        document.getElementById('results').addEventListener('click',()=>{
+            clearstatus(document.body);
+            document.body.style.background='url(bg2.jpg)';
+            document.getElementById('score').style.display='block';
+            document.getElementById('info').style.display='none';
+            document.getElementById('results').innerHTML='';
+            queCont.style.display='none';
+            document.getElementById('marks').innerHTML=correctcounter;
+            document.getElementById('again').addEventListener('click',()=>{
+                location.reload();
+            })
+        })    
+    
 }
 
 function shownext(que){
@@ -104,32 +128,15 @@ function selectnext(e){
     Array.from(ansEle.children).forEach(button =>{
         setstatus(button, button.dataset.iscorrect)
     });
-    //stop at last que
-    if(shuffledque.length > currentque +1 ){
-        next.style.visibility='visible';
-    }else{
-        back.style.display='none';
-        next.style.display='none';
-        document.getElementById('results').style.display='block';
-        document.getElementById('info').style.display='block';
-        document.getElementById('results').addEventListener('click',()=>{
-            clearstatus(document.body);
-            document.body.style.background='url(bg2.jpg)';
-            document.getElementById('score').style.display='block';
-            document.getElementById('info').style.display='none';
-            document.getElementById('results').innerHTML='';
-            queCont.style.display='none';
-            document.getElementById('marks').innerHTML=correctcounter;
-            document.getElementById('again').addEventListener('click',()=>{
-                location.reload();
-            })
-        })    
-    }
+
 };
 function resetquizbox() {
     while (ansEle.firstChild){
         ansEle.removeChild(ansEle.firstChild);
     }
 };
+
+
+
 
 
